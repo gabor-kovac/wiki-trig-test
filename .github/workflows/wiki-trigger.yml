@@ -1,19 +1,26 @@
 name: Wiki trigger
 
 on:
-  workflow_dispatch:
+  push:
+    branches-ignore:
+      - release
+  pull_request:
+    types: [closed, synchronize]
   gollum:
 
 jobs:
-  build:
+  Trigger_Wiki:
+    if: (github.event_name == 'gollum')
+    uses: gabor-kovac/wiki-trig-test/tree/main/.github/workflows/test-wf.yml@main
+
+  Pull_Request:
+    if: (github.event_name == 'pull_request')
     runs-on: ubuntu-latest
-
     steps:
-      - name: Gollam says
-        if: github.event_name == 'gollum'
-        run: echo My precious
+      - run: echo "Triggered by pull request"
 
-      - name: Debug
-        run: echo $JSON
-        env:
-          JSON: ${{ toJSON(github) }}
+  Push:
+    if: (github.event_name == 'push')
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Triggered by push"
