@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Gollam says
-        if: github.event_name == 'gollam'
+        if: github.event_name == 'gollum'
         run: echo My precious
 
       - name: Debug
