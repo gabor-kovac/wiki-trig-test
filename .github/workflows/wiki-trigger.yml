@@ -12,6 +12,7 @@ jobs:
   Trigger_Wiki:
     if: (github.event_name == 'gollum')
     uses: gabor-kovac/wiki-trig-test/.github/workflows/test-wf.yml@main
+    secrets: inherit
 
   Pull_Request:
     if: (github.event_name == 'pull_request')
