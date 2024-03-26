@@ -1,0 +1,17 @@
+name: Wiki trigger
+
+on:
+  workflow_dispatch:
+  gollum:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Gollam says
+        if: github.event_name == 'gollam'
+        run: echo My precious
+
+      - name: HW
+        run: echo Hello World
