@@ -16,4 +16,4 @@ jobs:
       - name: Debug
         run: echo $JSON
         env:
-          JSON: ${{ toJSON(github.event) }}
+          JSON: ${{ toJSON(github) }}
