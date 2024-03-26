@@ -13,5 +13,7 @@ jobs:
         if: github.event_name == 'gollam'
         run: echo My precious
 
-      - name: HW
-        run: echo Hello World
+      - name: Debug
+        run: echo $JSON
+        env:
+          JSON: ${{ toJSON(github.event) }}
