@@ -9,27 +9,11 @@ on:
   gollum:
 
 jobs:
-  Print_Trigger:
-    if: (github.event_name == 'push' || github.event_name == 'pull_request')
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Event trigger was ${{ github.event_name }}"
-
   Pull_Request:
-    needs: [Print_Trigger]
-    if: (github.event_name == 'pull_request')
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Triggered by pull request"
-
-  Push:
-    needs: [Print_Trigger]
-    if: (github.event_name == 'push')
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "Triggered by push"
+    if: (github.event_name == 'pull_request' || github.event_name == 'push')
+    uses: gabor-kovac/workflow/.github/workflows/dispatch.yml@main
 
   Trigger_Wiki:
     if: (github.event_name == 'gollum')
-    uses: gabor-kovac/wiki-trig-test/.github/workflows/test-wf.yml@main
+    uses: gabor-kovac/workflow/.github/workflows/say_hi.yml@main
     secrets: inherit
