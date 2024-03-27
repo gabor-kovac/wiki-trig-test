@@ -9,7 +9,7 @@ on:
   gollum:
 
 jobs:
-  Pull_Request:
+  Dispatch_Workflow:
     if: (github.event_name == 'pull_request' || github.event_name == 'push')
     uses: gabor-kovac/workflow/.github/workflows/dispatch.yml@main
 
